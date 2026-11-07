@@ -137,7 +137,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
               }}
               className="px-8 py-3.5 rounded-xl bg-[#cd061e] hover:bg-[#b9051a] text-white font-bold text-sm sm:text-base shadow-[0_0_25px_rgba(205,6,30,0.5)] hover:shadow-[0_0_35px_rgba(205,6,30,0.7)] transform hover:-translate-y-0.5 transition-all flex items-center gap-3 border border-red-400/40 cursor-pointer animate-bounce"
             >
-              <span>Entra in IngegnerIA</span>
+              <span>Entra</span>
               <ArrowRight className="w-5 h-5" />
             </button>
           ) : (
@@ -148,9 +148,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
         </div>
       </div>
 
-      {/* Footer with Vectorized CNI-C3i Institutional Logo Banner */}
-      <div className="relative z-10 w-full max-w-xl mx-auto pt-4 pb-2 border-t border-sky-500/15 flex flex-col items-center justify-center">
-        <InstitutionLogosBanner className="w-full max-w-md sm:max-w-lg h-auto" />
+      {/* Footer with attached CNI-C3i logo */}
+      <div className="relative z-10 w-full max-w-xl mx-auto pt-3 pb-1 border-t border-sky-500/15 flex flex-col items-center justify-center">
+        <img
+          src="/assets/aistudio/logo_cni_c3i_lettere_bianche_f1d712f7.png"
+          alt="Consiglio Nazionale degli Ingegneri e C3i"
+          className="w-full max-w-[220px] sm:max-w-[280px] h-auto object-contain filter drop-shadow-md opacity-95"
+        />
       </div>
     </div>
   );

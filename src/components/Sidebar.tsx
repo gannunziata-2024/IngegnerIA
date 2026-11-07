@@ -39,11 +39,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'pratica', label: 'Casi Pratici Operativi', icon: Wrench, badge: '65' },
     { id: 'modelli', label: 'Modelli & Contratti', icon: FileText, badge: '3' },
     { id: 'checklist', label: 'Checklist di Controllo', icon: CheckSquare, badge: '3' },
-    { id: 'guida', label: 'Guida Ufficiale CNI', icon: BookOpen, badge: '57 pag.' },
+    { id: 'guida', label: 'Guida completa', icon: BookOpen, badge: '57 pag.' },
     { id: 'glossario', label: 'Glossario Tecnico', icon: HelpCircle, badge: '23' },
-    { id: 'quiz', label: 'Simulatore Quiz CNI', icon: GraduationCap, badge: '50 quesiti' },
+    { id: 'quiz', label: 'Autovalutazione', icon: GraduationCap, badge: '50 quesiti' },
     { id: 'salvati', label: 'Elementi Salvati', icon: Bookmark, badge: savedCount > 0 ? String(savedCount) : undefined },
-    { id: 'fonte', label: 'Note e Fonti Ufficiali', icon: Info },
+    { id: 'fonte', label: 'Crediti e Autori', icon: Info },
   ];
 
   const handleSelect = (id: string) => {
@@ -121,13 +121,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             rel="noopener noreferrer"
             className="flex items-center justify-between p-2.5 rounded-xl bg-sky-950/60 hover:bg-sky-900/60 border border-sky-500/20 text-xs text-sky-300 transition-colors group"
           >
-            <div className="flex items-center gap-2 min-w-0">
-              <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
-              <div className="truncate text-left">
-                <div className="font-semibold text-white truncate">Guida C3i / CNI</div>
-                <div className="text-[10px] text-slate-400">A cura di C3i · Edita da CNI</div>
-              </div>
-            </div>
+            <span className="font-semibold text-white truncate">Scarica il PDF della guida</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-300 shrink-0" />
           </a>
 

@@ -259,7 +259,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="text-sky-400 hover:underline"
               >
-                PDF Ufficiale CNI
+                PDF Guida pratica
               </a>
               <span>·</span>
               <button

@@ -54,7 +54,7 @@ export const SourceView: React.FC = () => {
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mt-1 flex items-center gap-2.5">
             <Info className="w-7 h-7 text-sky-400" />
-            <span>Crediti, Autori e Quadro Istituzionale</span>
+            <span>Crediti e Autori</span>
           </h1>
           <p className="text-sm text-slate-300 mt-1 max-w-2xl">
             La presente applicazione è basata sulla <em>Guida pratica sull&rsquo;Intelligenza Artificiale per l&rsquo;Ingegnere</em>, curata dal <strong>C3i</strong> ed edita dal <strong>CNI</strong>.
@@ -68,7 +68,7 @@ export const SourceView: React.FC = () => {
           className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-colors shadow-md shrink-0"
         >
           <BookOpen className="w-4 h-4" />
-          <span>Apri PDF Ufficiale (57 pag.)</span>
+          <span>Apri PDF Guida (57 pag.)</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
       </div>
@@ -77,10 +77,6 @@ export const SourceView: React.FC = () => {
       <div className="p-6 sm:p-8 rounded-2xl bg-[#0f274a] border border-sky-500/25 space-y-8 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-sky-500/15 pb-6">
           <BrandLogo size="lg" animated={false} />
-          <div className="text-left sm:text-right text-xs text-slate-300">
-            <span className="block font-bold text-white text-sm">Edizione Ufficiale</span>
-            <span className="text-sky-300">Aggiornamento 15 Ottobre</span>
-          </div>
         </div>
 
         {/* SECTION 1: EDITORIAL & CURATION BADGES */}

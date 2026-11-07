@@ -25,11 +25,6 @@ export const GuideView: React.FC<GuideViewProps> = ({ chapters, onNavigate }) =>
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-sky-500/15 pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-400">
-            <span>A cura del C3i</span>
-            <span>·</span>
-            <span>Edita dal CNI (Consiglio Nazionale Ingegneri)</span>
-          </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mt-1 flex items-center gap-2.5">
             <BookOpen className="w-7 h-7 text-sky-400" />
             <span>Guida Pratica all'IA per l&rsquo;Ingegnere</span>
@@ -37,18 +32,6 @@ export const GuideView: React.FC<GuideViewProps> = ({ chapters, onNavigate }) =>
           <p className="text-sm text-slate-300 mt-1 max-w-3xl">
             Indice navigabile dei 9 capitoli della Guida curata dal C3i ed edita dal CNI (aggiornamento 15 ottobre), con collegamenti diretti a ciascuna pagina del testo originale.
           </p>
-        </div>
-
-        <div className="flex items-center gap-2 shrink-0">
-          <a
-            href={SOURCE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-md"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Scarica PDF Completo (57 pag.)</span>
-          </a>
         </div>
       </div>
 
