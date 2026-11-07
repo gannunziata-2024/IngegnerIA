@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GearSparkLogo, IngegneriaWordmark } from './BrandLogo';
+import { InstitutionLogosBanner } from './InstitutionLogos';
 import { X, ArrowRight } from 'lucide-react';
 
 interface SplashScreenProps {
@@ -10,40 +11,37 @@ interface SplashScreenProps {
 export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen = false }) => {
   const [stepIndex, setStepIndex] = useState(0);
   const [progress, setProgress] = useState(5);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
   const steps = [
     { text: 'Preparazione in corso', progress: 25 },
     { text: 'Caricamento degli strumenti di ingegneria', progress: 55 },
     { text: 'Verifica conformità AI Act & Codice Deontologico', progress: 85 },
-    { text: 'Benvenuto in IngegnerIA', progress: 100 },
+    { text: 'Pronto per l\'accesso', progress: 100 },
   ];
 
   useEffect(() => {
     const t1 = setTimeout(() => {
       setStepIndex(1);
       setProgress(55);
-    }, 900);
+    }, 800);
 
     const t2 = setTimeout(() => {
       setStepIndex(2);
       setProgress(85);
-    }, 1800);
+    }, 1600);
 
     const t3 = setTimeout(() => {
       setStepIndex(3);
       setProgress(100);
-    }, 2600);
-
-    const t4 = setTimeout(() => {
-      handleClose();
-    }, 3500);
+      setIsLoaded(true);
+    }, 2400);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
-      clearTimeout(t4);
     };
   }, []);
 
@@ -56,10 +54,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
 
   return (
     <div
-      onClick={handleClose}
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center p-6 text-center select-none cursor-pointer transition-opacity duration-500 ${
-        isClosing ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
+      onClick={() => {
+        if (isLoaded) handleClose();
+      }}
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-between p-6 text-center select-none transition-opacity duration-500 overflow-y-auto ${
+        isLoaded ? 'cursor-pointer' : 'cursor-default'
+      } ${isClosing ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       style={{
         background: 'radial-gradient(circle at 50% 35%, #13305a 0%, #0b1f3a 70%)',
       }}
@@ -81,22 +81,22 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
         }}
       />
 
-      {/* Manual close button if opened manually */}
+      {/* Manual skip button */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           handleClose();
         }}
-        className="absolute top-6 right-6 p-2 rounded-full bg-slate-800/60 hover:bg-slate-700/80 text-slate-300 hover:text-white transition-all z-20 flex items-center gap-2 px-4 text-xs font-semibold uppercase tracking-wider border border-sky-500/20"
+        className="absolute top-6 right-6 p-2 rounded-full bg-slate-800/60 hover:bg-slate-700/80 text-slate-300 hover:text-white transition-all z-20 flex items-center gap-2 px-4 text-xs font-semibold uppercase tracking-wider border border-sky-500/25 cursor-pointer"
       >
         <span>Salta</span>
         <X className="w-4 h-4" />
       </button>
 
-      <div className="relative z-10 flex flex-col items-center max-w-lg w-full">
+      <div className="my-auto relative z-10 flex flex-col items-center max-w-lg w-full py-8">
         {/* Animated Logo */}
         <div className="mb-6 filter drop-shadow-[0_0_20px_rgba(56,189,248,0.25)]">
-          <GearSparkLogo size={120} animated={true} />
+          <GearSparkLogo size={110} animated={true} />
         </div>
 
         {/* Title: 100% vector graphic wordmark */}
@@ -105,17 +105,17 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
         </div>
 
         {/* Tagline */}
-        <p className="mt-4 text-lg sm:text-xl font-semibold tracking-wide text-sky-300">
-          Dalla guida agli strumenti
+        <p className="mt-3 text-lg sm:text-xl font-semibold tracking-wide text-sky-300">
+          Dalla guida all'app
         </p>
 
         {/* Description */}
-        <p className="mt-3 text-sm sm:text-base text-slate-300/80 max-w-md leading-relaxed">
-          App di supporto agli ingegneri per un utilizzo consapevole e deontologico dell'intelligenza artificiale
+        <p className="mt-3 text-sm sm:text-base text-slate-200 max-w-md leading-relaxed font-medium">
+          A supporto degli ingegneri per un utilizzo consapevole, responsabile e deontologico dell'intelligenza artificiale
         </p>
 
         {/* Loader Bar */}
-        <div className="mt-10 w-full max-w-xs">
+        <div className="mt-8 w-full max-w-xs">
           <div className="h-1.5 w-full bg-slate-700/50 rounded-full overflow-hidden border border-slate-600/30">
             <div
               className="h-full bg-gradient-to-r from-sky-400 via-sky-300 to-white rounded-full transition-all duration-700 ease-out"
@@ -127,18 +127,30 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
           </p>
         </div>
 
-        <div className="mt-8">
-          <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-300 transition-colors">
-            Clicca per iniziare subito <ArrowRight className="w-3.5 h-3.5" />
-          </span>
+        {/* Action Button when loaded */}
+        <div className="mt-8 min-h-[50px] flex items-center justify-center">
+          {isLoaded ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClose();
+              }}
+              className="px-8 py-3.5 rounded-xl bg-[#cd061e] hover:bg-[#b9051a] text-white font-bold text-sm sm:text-base shadow-[0_0_25px_rgba(205,6,30,0.5)] hover:shadow-[0_0_35px_rgba(205,6,30,0.7)] transform hover:-translate-y-0.5 transition-all flex items-center gap-3 border border-red-400/40 cursor-pointer animate-bounce"
+            >
+              <span>Entra in IngegnerIA</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          ) : (
+            <span className="text-xs text-slate-400 animate-pulse tracking-wide">
+              Caricamento in corso...
+            </span>
+          )}
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="absolute bottom-6 left-0 right-0 text-center text-xs tracking-wider uppercase text-slate-400/90 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-        <span className="text-sky-300 font-semibold">A cura del C3i</span>
-        <span className="hidden sm:inline text-slate-600">·</span>
-        <span>Edita dal CNI (Consiglio Nazionale Ingegneri)</span>
+      {/* Footer with Vectorized CNI-C3i Institutional Logo Banner */}
+      <div className="relative z-10 w-full max-w-xl mx-auto pt-4 pb-2 border-t border-sky-500/15 flex flex-col items-center justify-center">
+        <InstitutionLogosBanner className="w-full max-w-md sm:max-w-lg h-auto" />
       </div>
     </div>
   );

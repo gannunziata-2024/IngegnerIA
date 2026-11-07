@@ -126,7 +126,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         <IngegneriaWordmark className={current.wordmark} />
         {showSubtitle && (
           <span className={`text-sky-300 font-semibold tracking-wide mt-0.5 ${current.sub}`}>
-            Dalla guida agli strumenti
+            Dalla guida all'app
           </span>
         )}
       </div>

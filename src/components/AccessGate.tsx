@@ -57,7 +57,7 @@ export const AccessGate: React.FC<AccessGateProps> = ({ onUnlock }) => {
           </div>
 
           <p className="text-sky-300 font-semibold text-sm mt-1">
-            Dalla guida agli strumenti
+            Dalla guida all'app
           </p>
           <p className="text-xs text-slate-300/80 mt-2 max-w-xs leading-relaxed">
             Piattaforma interattiva per l'applicazione delle linee guida CNI sull'Intelligenza Artificiale e AI Act
