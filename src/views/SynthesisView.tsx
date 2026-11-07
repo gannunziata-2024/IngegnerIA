@@ -56,9 +56,9 @@ export const SynthesisView: React.FC<SynthesisViewProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-sky-500/15 pb-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-400">
-            <span>Guida Ufficiale CNI</span>
+            <span>A cura del C3i</span>
             <span>·</span>
-            <span>Linee Guida Nazionali</span>
+            <span>Edita dal CNI</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
             {selected ? selected.title : 'Schede di Sintesi Operative'}

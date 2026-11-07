@@ -1,6 +1,6 @@
 {
-  "name": "IngegnerIA - Guida Pratica AI per l'Ingegnere",
-  "description": "App di supporto agli ingegneri per un utilizzo consapevole e deontologico dell'intelligenza artificiale, basata sulla Guida CNI, sull'AI Act europeo e sulla Legge 132/2025.",
+  "name": "IngegnerIA - Guida Pratica all'IA per l'Ingegnere",
+  "description": "App di supporto agli ingegneri per un utilizzo consapevole e deontologico dell'intelligenza artificiale, basata sulla Guida curata dal C3i (Comitato Italiano Ingegneria dell'Informazione) ed edita dal CNI (Consiglio Nazionale degli Ingegneri).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

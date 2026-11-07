@@ -238,10 +238,10 @@ export default function App() {
             <div className="space-y-1">
               <div className="flex items-center justify-center sm:justify-start gap-2">
                 <IngegneriaWordmark className="h-4 sm:h-4.5 w-auto" />
-                <span className="font-semibold text-slate-300">· Guida Pratica AI per l&rsquo;Ingegnere</span>
+                <span className="font-semibold text-slate-300">· Guida Pratica all'IA per l&rsquo;Ingegnere</span>
               </div>
               <p className="text-[11px] text-slate-400">
-                Basato sulla Guida CNI (aggiornamento 15 ottobre), L. 132/2025, Reg. (UE) 2024/1689 e Codice Deontologico.
+                A cura del <strong className="text-slate-300">C3i</strong> (Comitato Italiano Ingegneria dell&rsquo;Informazione) ed edita dal <strong className="text-slate-300">CNI</strong> (Consiglio Nazionale degli Ingegneri).
               </p>
             </div>
 

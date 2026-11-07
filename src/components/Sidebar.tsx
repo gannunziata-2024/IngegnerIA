@@ -124,16 +124,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex items-center gap-2 min-w-0">
               <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
               <div className="truncate text-left">
-                <div className="font-semibold text-white truncate">PDF CNI Ufficiale</div>
-                <div className="text-[10px] text-slate-400">Aggiornato 15 Ottobre</div>
+                <div className="font-semibold text-white truncate">Guida C3i / CNI</div>
+                <div className="text-[10px] text-slate-400">A cura di C3i · Edita da CNI</div>
               </div>
             </div>
             <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-300 shrink-0" />
           </a>
 
-          <div className="mt-3 text-[10px] text-slate-400/90 text-center flex items-center justify-center gap-1.5">
-            <IngegneriaWordmark className="h-3 w-auto inline-block" />
-            <span>· CNI</span>
+          <div className="mt-3 text-[10px] text-slate-400/90 text-center flex flex-col items-center justify-center gap-1">
+            <div className="flex items-center gap-1.5">
+              <IngegneriaWordmark className="h-3 w-auto inline-block" />
+            </div>
+            <span className="text-[10px] text-sky-400/80">A cura del C3i · Edita dal CNI</span>
           </div>
         </div>
       </aside>

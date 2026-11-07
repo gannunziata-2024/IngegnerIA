@@ -135,8 +135,10 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, manualOpen
       </div>
 
       {/* Footer */}
-      <div className="absolute bottom-6 left-0 right-0 text-center text-xs tracking-widest uppercase text-slate-400/80">
-        Versione 2.0 · CNI Consiglio Nazionale Ingegneri
+      <div className="absolute bottom-6 left-0 right-0 text-center text-xs tracking-wider uppercase text-slate-400/90 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+        <span className="text-sky-300 font-semibold">A cura del C3i</span>
+        <span className="hidden sm:inline text-slate-600">·</span>
+        <span>Edita dal CNI (Consiglio Nazionale Ingegneri)</span>
       </div>
     </div>
   );
