@@ -30,7 +30,7 @@ export const GuideView: React.FC<GuideViewProps> = ({ chapters, onNavigate }) =>
             <span>Guida Pratica all'IA per l&rsquo;Ingegnere</span>
           </h1>
           <p className="text-sm text-slate-300 mt-1 max-w-3xl">
-            Indice navigabile dei 9 capitoli della Guida curata dal C3i ed edita dal CNI (aggiornamento 15 ottobre), con collegamenti diretti a ciascuna pagina del testo originale.
+            Indice navigabile dei 9 capitoli della Guida curata dal C3i ed edita dal CNI (aggiornamento 15 ottobre 2026), con collegamenti diretti a ciascuna pagina del testo originale.
           </p>
         </div>
       </div>

@@ -86,15 +86,6 @@ export const DecisionTreeView: React.FC<DecisionTreeViewProps> = ({
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          <a
-            href="/albero-ai-act.png"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span>Grafico originale</span>
-          </a>
           <button
             onClick={() => window.print()}
             className="px-3.5 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-md"
@@ -116,7 +107,7 @@ export const DecisionTreeView: React.FC<DecisionTreeViewProps> = ({
           }`}
         >
           <Layers className="w-4 h-4" />
-          <span>Mappa Nodi CNI</span>
+          <span>Mappa Nodi</span>
         </button>
         <button
           onClick={() => setActiveTab('wizard')}
@@ -671,7 +662,7 @@ export const DecisionTreeView: React.FC<DecisionTreeViewProps> = ({
                   className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors shadow-md"
                 >
                   <FileText className="w-4 h-4" />
-                  <span>Vedi i Modelli contrattuali CNI</span>
+                  <span>Vedi modelli contrattuali</span>
                 </button>
                 <button
                   onClick={() => onNavigate('checklist')}

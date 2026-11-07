@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { QuizQuestion } from '../types';
-import { GraduationCap, CheckCircle2, XCircle, AlertCircle, ArrowRight, RotateCcw, Clock, HelpCircle } from 'lucide-react';
+import { GraduationCap, CheckCircle2, XCircle, ArrowRight, RotateCcw, Sparkles } from 'lucide-react';
 
 interface QuizViewProps {
   questions: QuizQuestion[];
@@ -17,15 +17,15 @@ const quizParts = [
 
 export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => {
   const [activeSession, setActiveSession] = useState<{
-    ids: number[];
+    ids: (number | string)[];
     currentIndex: number;
-    answers: { [id: number]: string };
+    answers: { [id: string]: string };
     finished: boolean;
   } | null>(null);
 
   const [instantFeedback, setInstantFeedback] = useState(true);
 
-  const startQuiz = (selectedIds: number[]) => {
+  const startQuiz = (selectedIds: (number | string)[]) => {
     setActiveSession({
       ids: selectedIds,
       currentIndex: 0,
@@ -48,13 +48,13 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
     startQuiz(questions.map((q) => q.id));
   };
 
-  const handleSelectOption = (questionId: number, optionId: string) => {
+  const handleSelectOption = (questionId: number | string, optionId: string) => {
     if (!activeSession || activeSession.finished) return;
     setActiveSession({
       ...activeSession,
       answers: {
         ...activeSession.answers,
-        [questionId]: optionId,
+        [String(questionId)]: optionId,
       },
     });
   };
@@ -90,8 +90,8 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
     let unanswered = 0;
 
     activeSession.ids.forEach((id) => {
-      const q = questions.find((item) => item.id === id);
-      const ans = activeSession.answers[id];
+      const q = questions.find((item) => String(item.id) === String(id));
+      const ans = activeSession.answers[String(id)];
       if (!ans) {
         unanswered++;
       } else if (ans === q?.answer) {
@@ -107,8 +107,23 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
   // If in quiz test mode
   if (activeSession && !activeSession.finished) {
     const currentQId = activeSession.ids[activeSession.currentIndex];
-    const currentQ = questions.find((q) => q.id === currentQId)!;
-    const selectedAnswer = activeSession.answers[currentQId];
+    const currentQ = questions.find((q) => String(q.id) === String(currentQId));
+    
+    if (!currentQ) {
+      return (
+        <div className="p-8 text-center text-slate-300">
+          <p>Errore nel caricamento del quesito.</p>
+          <button
+            onClick={() => setActiveSession(null)}
+            className="mt-4 px-4 py-2 bg-sky-500 text-slate-950 font-bold text-xs rounded-xl"
+          >
+            Torna all'autovalutazione
+          </button>
+        </div>
+      );
+    }
+
+    const selectedAnswer = activeSession.answers[String(currentQId)];
     const isAnswered = !!selectedAnswer;
     const isCorrect = selectedAnswer === currentQ.answer;
 
@@ -137,7 +152,7 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
             </label>
             <button
               onClick={() => setActiveSession(null)}
-              className="text-xs text-slate-400 hover:text-white"
+              className="text-xs text-slate-400 hover:text-white cursor-pointer"
             >
               Esci
             </button>
@@ -159,8 +174,9 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
           </h2>
 
           <div className="space-y-3">
-            {currentQ.options.map((opt) => {
+            {currentQ.options.map((opt, optIdx) => {
               const isSelected = selectedAnswer === opt.id;
+              const optionLetter = String.fromCharCode(65 + optIdx); // A, B, C, D
               let optClass = 'bg-[#0b1f3a] border-sky-500/20 text-slate-200 hover:bg-sky-950/40';
 
               if (instantFeedback && isAnswered) {
@@ -177,10 +193,10 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
                 <button
                   key={opt.id}
                   onClick={() => handleSelectOption(currentQId, opt.id)}
-                  className={`w-full p-4 rounded-xl border text-left text-xs sm:text-sm font-medium transition-all flex items-start gap-3 ${optClass}`}
+                  className={`w-full p-4 rounded-xl border text-left text-xs sm:text-sm font-medium transition-all flex items-start gap-3 cursor-pointer ${optClass}`}
                 >
                   <span className="w-6 h-6 rounded-md bg-slate-800 text-slate-300 font-bold text-xs flex items-center justify-center shrink-0 uppercase">
-                    {opt.id}
+                    {optionLetter}
                   </span>
                   <span className="leading-relaxed">{opt.text}</span>
                 </button>
@@ -200,7 +216,7 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
               <p>{currentQ.explanation}</p>
               {currentQ.evidence && (
                 <div className="pt-2 border-t border-sky-500/15 text-xs text-slate-300 italic">
-                  &ldquo;{currentQ.evidence}&rdquo; (Guida CNI pag. {currentQ.page})
+                  &ldquo;{currentQ.evidence}&rdquo; (Guida pag. {currentQ.page})
                 </div>
               )}
             </div>
@@ -211,13 +227,13 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
             <button
               onClick={handlePrev}
               disabled={activeSession.currentIndex === 0}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-slate-300 text-xs font-semibold"
+              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-slate-300 text-xs font-semibold cursor-pointer disabled:cursor-not-allowed"
             >
               Precedente
             </button>
             <button
               onClick={handleNext}
-              className="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md"
+              className="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md cursor-pointer"
             >
               <span>{activeSession.currentIndex < activeSession.ids.length - 1 ? 'Prossima Domanda' : 'Concludi Test'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -236,7 +252,7 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
     return (
       <div className="space-y-8 max-w-3xl mx-auto">
         <div className="p-6 sm:p-8 rounded-2xl bg-[#0f274a] border border-sky-500/25 text-center space-y-4 shadow-xl">
-          <span className="text-xs font-bold uppercase tracking-wider text-sky-400">Riepilogo Test CNI</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-sky-400">Riepilogo Autovalutazione</span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
             Punteggio Finale: {score.correct} / {score.total} ({percent}%)
           </h2>
@@ -259,16 +275,16 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
           <div className="flex flex-wrap justify-center gap-3 pt-4">
             <button
               onClick={() => startRandom10()}
-              className="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2"
+              className="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 cursor-pointer shadow-md"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Nuovo Test Rapido (10 quesiti)</span>
             </button>
             <button
               onClick={() => setActiveSession(null)}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold"
+              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold cursor-pointer"
             >
-              Torna al menu quiz
+              Torna all'autovalutazione
             </button>
           </div>
         </div>
@@ -329,14 +345,14 @@ export const QuizView: React.FC<QuizViewProps> = ({ questions, onNavigate }) => 
               Simulazione Completa
             </span>
             <h3 className="text-xl font-bold text-white group-hover:text-red-300 transition-colors">
-              Tutte le 50 Domande CNI
+              Tutte le 50 Domande della Guida
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Il percorso integrale per verificare punto per punto tutti gli aspetti normativi, deontologici, sanzionatori e tecnici della Guida.
             </p>
           </div>
           <div className="pt-4 mt-4 border-t border-sky-500/15 flex items-center justify-between">
-            <span className="text-xs text-slate-400 font-semibold">50 quesiti ufficiali</span>
+            <span className="text-xs text-slate-400 font-semibold">50 quesiti totali</span>
             <span className="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 group-hover:bg-sky-500 group-hover:text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors">
               Avvia completo <ArrowRight className="w-4 h-4" />
             </span>

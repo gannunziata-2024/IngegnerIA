@@ -33,13 +33,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClose
 }) => {
   const navItems = [
+    { id: 'guida', label: 'Guida completa', icon: BookOpen, badge: '57 pag.' },
     { id: 'sintesi', label: 'Schede di Sintesi', icon: Layers, badge: '10' },
     { id: 'albero', label: 'Albero Decisionale AI Act', icon: GitFork, badge: 'Schema + Wizard' },
     { id: 'prompt', label: 'Prompt Ingegneristici', icon: Sparkles, badge: '8' },
     { id: 'pratica', label: 'Casi Pratici Operativi', icon: Wrench, badge: '65' },
     { id: 'modelli', label: 'Modelli & Contratti', icon: FileText, badge: '3' },
     { id: 'checklist', label: 'Checklist di Controllo', icon: CheckSquare, badge: '3' },
-    { id: 'guida', label: 'Guida completa', icon: BookOpen, badge: '57 pag.' },
     { id: 'glossario', label: 'Glossario Tecnico', icon: HelpCircle, badge: '23' },
     { id: 'quiz', label: 'Autovalutazione', icon: GraduationCap, badge: '50 quesiti' },
     { id: 'salvati', label: 'Elementi Salvati', icon: Bookmark, badge: savedCount > 0 ? String(savedCount) : undefined },

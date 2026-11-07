@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <div className="flex items-center gap-2">
             <Search className="w-4 h-4 text-sky-400 group-hover:text-sky-300 transition-colors" />
-            <span className="truncate">Cerca nella Guida CNI, prompt, quiz...</span>
+            <span className="truncate">Cerca nella Guida, prompt, quiz...</span>
           </div>
           <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono font-semibold text-slate-400 bg-slate-900 border border-slate-700 rounded-md">
             ⌘K

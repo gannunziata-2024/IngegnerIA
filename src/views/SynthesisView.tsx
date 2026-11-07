@@ -288,20 +288,34 @@ export const SynthesisView: React.FC<SynthesisViewProps> = ({
               </div>
 
               {/* Action Link if provided */}
-              {item.action && (
-                <div className="pt-4 border-t border-sky-500/15 flex justify-end">
-                  <button
-                    onClick={() => {
-                      const [route, arg] = item.action!.href.replace('#', '').split('/');
-                      onNavigate(route, arg);
-                    }}
-                    className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md"
-                  >
-                    <span>{item.action.label}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              )}
+              {item.action && (() => {
+                let targetHref = '';
+                let targetLabel = '';
+                if (Array.isArray(item.action)) {
+                  targetHref = item.action[0] || '';
+                  targetLabel = item.action[1] || '';
+                } else if (typeof item.action === 'object' && item.action !== null) {
+                  targetHref = (item.action as any).href || (item.action as any).path || '';
+                  targetLabel = (item.action as any).label || '';
+                }
+                if (!targetHref || !targetLabel) return null;
+
+                const cleanHref = targetHref.replace(/^[#/]+/, '');
+                const [route, ...rest] = cleanHref.split('/');
+                const arg = rest.length ? rest.join('/') : undefined;
+
+                return (
+                  <div className="pt-4 border-t border-sky-500/15 flex justify-end">
+                    <button
+                      onClick={() => onNavigate(route, arg)}
+                      className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md cursor-pointer"
+                    >
+                      <span>{targetLabel}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                );
+              })()}
             </article>
           ))}
 

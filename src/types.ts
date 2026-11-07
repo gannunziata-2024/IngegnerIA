@@ -30,7 +30,7 @@ export interface Summary {
   action?: {
     href: string;
     label: string;
-  };
+  } | [string, string];
 }
 
 export interface PromptItem {
@@ -77,7 +77,7 @@ export interface QuizOption {
 }
 
 export interface QuizQuestion {
-  id: number;
+  id: number | string;
   part: number;
   question: string;
   options: QuizOption[];
