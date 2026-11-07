@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --night: #0b1f3a;
+    --night-2: #13305a;
+    --night-card: #0f274a;
+    --night-card-hover: #163665;
+    --night-border: #1e3e6b;
+    --night-border-subtle: rgba(125, 211, 252, 0.15);
+    --sky: #7dd3fc;
+    --sky-deep: #38bdf8;
+    --cni-red: #cd061e;
+    --cni-red-glow: rgba(205, 6, 30, 0.25);
+    --muted: #9fb3cc;
+    --track: rgba(159, 179, 204, 0.18);
+  }
+
+  body {
+    background-color: var(--night);
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Engineering Technical Blueprint Grid */
+.bg-tech-grid {
+  background-image: 
+    linear-gradient(rgba(125, 211, 252, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-radial-gradient-night {
+  background: radial-gradient(circle at 50% 30%, #13305a 0%, #0b1f3a 80%);
+}
+
+/* Animations */
+@keyframes gearSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sparkPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+  }
+}
+
+.animate-gear {
+  transform-origin: 50% 50%;
+  animation: gearSpin 14s linear infinite;
+}
+
+.animate-spark {
+  transform-origin: 50% 50%;
+  animation: sparkPulse 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1f3a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3e6b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Print Styles */
+@media print {
+  .no-print, nav, aside, header, .splash-container, button:not(.print-allow) {
+    display: none !important;
+  }
+  body, main, #root {
+    background: #ffffff !important;
+    color: #111827 !important;
+    overflow: visible !important;
+  }
+  .print-page {
+    page-break-after: always;
+    break-after: page;
+  }
+}
