@@ -61,16 +61,6 @@ export const SourceView: React.FC = () => {
           </p>
         </div>
 
-        <a
-          href={SOURCE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-colors shadow-md shrink-0"
-        >
-          <BookOpen className="w-4 h-4" />
-          <span>Apri PDF Guida (57 pag.)</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
       </div>
 
       {/* Main Presentation Card */}

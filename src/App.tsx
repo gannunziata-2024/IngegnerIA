@@ -41,7 +41,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Routing
-  const [currentRoute, setCurrentRoute] = useState<string>('sintesi');
+  const [currentRoute, setCurrentRoute] = useState<string>('fonte');
   const [routeArg, setRouteArg] = useState<string | undefined>(undefined);
 
   // Modals
@@ -64,12 +64,12 @@ export default function App() {
     const handleHash = () => {
       const hash = window.location.hash.slice(1);
       if (!hash) {
-        setCurrentRoute('sintesi');
+        setCurrentRoute('fonte');
         setRouteArg(undefined);
         return;
       }
       const [route, ...rest] = hash.split('/');
-      setCurrentRoute(route || 'sintesi');
+      setCurrentRoute(route || 'fonte');
       setRouteArg(rest.length ? decodeURIComponent(rest.join('/')) : undefined);
     };
 
