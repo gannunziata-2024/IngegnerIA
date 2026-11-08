@@ -79,9 +79,6 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
               <div className="flex items-center gap-2">
                 <span className="font-bold text-white text-base sm:text-lg">Assistente Tecnico</span>
                 <IngegneriaWordmark className="h-4 sm:h-5 w-auto" />
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30">
-                  AI Act & CNI Copilot
-                </span>
               </div>
               <p className="text-xs text-slate-300">
                 Verifica conformità AI Act, qualificazione del rischio e perfezionamento prompt tecnici
