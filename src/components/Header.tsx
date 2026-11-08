@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Search, Sparkles, Play, LogOut, Bookmark, FileText } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -62,6 +63,9 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Search className="w-5 h-5 text-sky-400" />
         </button>
+
+        {/* Install PWA Button */}
+        <PWAInstallButton />
 
         {/* AI Assistant button */}
         <button
