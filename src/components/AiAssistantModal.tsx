@@ -77,7 +77,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-white text-base sm:text-lg">Assistente Tecnico</span>
+                <span className="font-bold text-white text-base sm:text-lg">Chatbot</span>
                 <IngegneriaWordmark className="h-4 sm:h-5 w-auto" />
               </div>
               <p className="text-xs text-slate-300">
